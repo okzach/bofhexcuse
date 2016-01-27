@@ -8,7 +8,7 @@ setup(
     license='',
     author='Zach Adams',
     author_email='zach@okzach.com',
-    description='Channel the BOFH to generate a random technical excuse.',
+    description='Generate random BOFH themed technical excuses!',
     include_package_data=True,
     entry_points={
         'console_scripts': [

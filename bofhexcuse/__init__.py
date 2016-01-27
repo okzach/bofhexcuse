@@ -39,7 +39,7 @@ def generate_excuse(excuse_dict, key='start'):
 
 
 def bofh_excuse(how_many=1):
-    """Generates random BOFH themed technical excuses on demand!
+    """Generate random BOFH themed technical excuses!
 
     :param how_many: Number of excuses to generate. (default 1)
     :type how_many: int
