@@ -28,7 +28,6 @@ print bofh_excuse()[0]
 ### Command Line
 
 Run the `bofhexcuse` command provided by `setuptools` `entry_points`.
-If you install the library as above, you can run `bofhexcuse` from the command line `entry_points` provided by `setuptools`.
 
 ```
 C:\>bofhexcuse
