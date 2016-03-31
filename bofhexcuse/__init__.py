@@ -16,12 +16,12 @@ def generate_random_string(template_dict, key='start'):
     Based off of drow's generator.js (public domain).
     Grok it here: http://donjon.bin.sh/code/random/generator.js
 
-    :param excuse_dict: Excuse template dict
-    :type excuse_dict: dict
-    :param key: Starting key to generate from
-    :type key: str
-    :return: Excuse string
-    :rtype: str
+    Args:
+        template_dict: Dict with template strings.
+        key: String with the starting index for the dict. (Default: 'start')
+
+    Returns:
+        Generated string.
     """
 
     data = template_dict.get(key)
@@ -41,10 +41,11 @@ def generate_random_string(template_dict, key='start'):
 def bofh_excuse(how_many=1):
     """Generate random BOFH themed technical excuses!
 
-    :param how_many: Number of excuses to generate. (default 1)
-    :type how_many: int
-    :return: A list of `how_many` excuses.
-    :rtype: list
+    Args:
+        how_many: Number of excuses to generate. (Default: 1)
+
+    Returns:
+        A list of BOFH excuses.
     """
 
     excuse_path = os.path.join(os.path.dirname(__file__), 'bofh_excuses.json')
