@@ -1,4 +1,11 @@
+import sys
+
 from setuptools import setup
+
+
+needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
+pytest_runner = ['pytest-runner'] if needs_pytest else []
+
 
 setup(
     name='bofhexcuse',
@@ -23,5 +30,7 @@ setup(
         'Programming Language:: Python:: 3',
         'Programming Language:: Python:: 3.5',
         'Topic :: Games/Entertainment :: Fortune Cookies'
-    ]
+    ],
+    setup_requires=[] + pytest_runner,
+    tests_require=['pytest']
 )
