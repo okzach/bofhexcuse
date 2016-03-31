@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='bofhexcuse',
-    version='0.2.0',
+    version='0.3.0',
     packages=['bofhexcuse'],
     url='https://github.com/okzach/bofhexcuse/',
     license='',
