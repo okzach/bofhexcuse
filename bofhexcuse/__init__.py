@@ -4,13 +4,13 @@ import random
 import re
 
 
-__all__ = ['generate_excuse', 'bofh_excuse']
+__all__ = ['generate_random_string', 'bofh_excuse']
 
 
 token_regex = re.compile('{(\w+)}')
 
 
-def generate_excuse(excuse_dict, key='start'):
+def generate_random_string(template_dict, key='start'):
     """Generates a random excuse from a simple template dict.
 
     Based off of drow's generator.js (public domain).
@@ -24,7 +24,7 @@ def generate_excuse(excuse_dict, key='start'):
     :rtype: str
     """
 
-    data = excuse_dict.get(key)
+    data = template_dict.get(key)
 
     #if isinstance(data, list):
     result = random.choice(data)
@@ -32,7 +32,7 @@ def generate_excuse(excuse_dict, key='start'):
         #result = random.choice(data.values())
 
     for match in token_regex.findall(result):
-        word = generate_excuse(excuse_dict, match) or match
+        word = generate_random_string(template_dict, match) or match
         result = result.replace('{{{0}}}'.format(match), word)
 
     return result
@@ -51,7 +51,7 @@ def bofh_excuse(how_many=1):
     with open(excuse_path, 'r') as _f:
         excuse_dict = json.load(_f)
 
-    return [generate_excuse(excuse_dict) for _ in xrange(how_many)]
+    return [generate_random_string(excuse_dict) for _ in range(int(how_many))]
 
 
 def main():
