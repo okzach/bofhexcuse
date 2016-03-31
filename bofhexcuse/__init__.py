@@ -1,3 +1,4 @@
+from __future__ import print_function
 import json
 import os
 import random
@@ -57,7 +58,7 @@ def bofh_excuse(how_many=1):
 
 def main():
     for excuse in bofh_excuse():
-        print excuse
+        print(excuse)
 
 
 if __name__ == '__main__':
