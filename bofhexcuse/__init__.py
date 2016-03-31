@@ -1,30 +1,31 @@
+from __future__ import print_function
 import json
 import os
 import random
 import re
 
 
-__all__ = ['generate_excuse', 'bofh_excuse']
+__all__ = ['generate_random_string', 'bofh_excuse']
 
 
 token_regex = re.compile('{(\w+)}')
 
 
-def generate_excuse(excuse_dict, key='start'):
+def generate_random_string(template_dict, key='start'):
     """Generates a random excuse from a simple template dict.
 
     Based off of drow's generator.js (public domain).
     Grok it here: http://donjon.bin.sh/code/random/generator.js
 
-    :param excuse_dict: Excuse template dict
-    :type excuse_dict: dict
-    :param key: Starting key to generate from
-    :type key: str
-    :return: Excuse string
-    :rtype: str
+    Args:
+        template_dict: Dict with template strings.
+        key: String with the starting index for the dict. (Default: 'start')
+
+    Returns:
+        Generated string.
     """
 
-    data = excuse_dict.get(key)
+    data = template_dict.get(key)
 
     #if isinstance(data, list):
     result = random.choice(data)
@@ -32,7 +33,7 @@ def generate_excuse(excuse_dict, key='start'):
         #result = random.choice(data.values())
 
     for match in token_regex.findall(result):
-        word = generate_excuse(excuse_dict, match) or match
+        word = generate_random_string(template_dict, match) or match
         result = result.replace('{{{0}}}'.format(match), word)
 
     return result
@@ -41,22 +42,23 @@ def generate_excuse(excuse_dict, key='start'):
 def bofh_excuse(how_many=1):
     """Generate random BOFH themed technical excuses!
 
-    :param how_many: Number of excuses to generate. (default 1)
-    :type how_many: int
-    :return: A list of `how_many` excuses.
-    :rtype: list
+    Args:
+        how_many: Number of excuses to generate. (Default: 1)
+
+    Returns:
+        A list of BOFH excuses.
     """
 
     excuse_path = os.path.join(os.path.dirname(__file__), 'bofh_excuses.json')
     with open(excuse_path, 'r') as _f:
         excuse_dict = json.load(_f)
 
-    return [generate_excuse(excuse_dict) for _ in xrange(how_many)]
+    return [generate_random_string(excuse_dict) for _ in range(int(how_many))]
 
 
 def main():
     for excuse in bofh_excuse():
-        print excuse
+        print(excuse)
 
 
 if __name__ == '__main__':
